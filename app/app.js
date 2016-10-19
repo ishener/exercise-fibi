@@ -4,9 +4,7 @@
 angular.module('myApp', [
   'ngRoute',
   'myApp.view1',
-  'myApp.view2',
-  'myApp.ticket-service',
-  'myApp.version'
+  'myApp.ticket-service'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
