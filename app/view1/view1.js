@@ -12,6 +12,7 @@ angular.module('myApp.view1', ['ngRoute'])
 .controller('View1Ctrl', function($scope, TicketsService) {
   $scope.tickets = null;
   $scope.page = 0;
+  $scope.reverse = true;
 
   TicketsService.getTickets().then(function (tickets) {
     for (var i = 0; i < tickets.length; i++) {
