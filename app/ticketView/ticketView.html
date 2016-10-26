@@ -1,0 +1,12 @@
+<div class="limit-width-1600">
+    <div ng-show="ticket === null">Loading...</div>
+    <div ng-show="ticket !== null">
+        <h1>Ticket #{{ticket.ticketId}}</h1>
+        <div>Status: {{ticket.status}}</div>
+        <div>Description: {{ticket.description}}</div>
+        <div>Owner: {{ticket.owner}}</div>
+    </div>
+
+    <div style="margin-top: 70px;"><a ng-click="gotoList()" class="pagination-button">Back to List</a></div>
+
+</div>

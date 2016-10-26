@@ -17,22 +17,26 @@
             </thead>
             <tbody>
             <tr ng-repeat="ticket in tickets | orderBy:'createdAt':reverse | limitTo:20:page track by $index">
-                <td>{{ticket.ticketId}}</td>
+                <td><a ng-click="gotoTicket(ticket.ticketId)" class="like-link">{{ticket.ticketId}}</a></td>
                 <td>{{ticket.status}}</td>
                 <td>{{ticket.createdAt | date:'medium'}}</td>
                 <td>{{ticket.owner}}</td>
                 <td>{{ticket.participant}}</td>
-                <td>{{ticket.site}}</td>
-                <td>{{ticket.equipment}}</td>
-                <td>{{ticket.model}}</td>
-                <td>{{ticket.description}}</td>
+                <td><editable value="ticket.site" on-save="updateTicket(ticket)"></editable></td>
+                <td><editable value="ticket.equipment" on-save="updateTicket(ticket)"></editable></td>
+                <td><editable value="ticket.model" on-save="updateTicket(ticket)"></editable></td>
+                <td><editable value="ticket.description" on-save="updateTicket(ticket)"></editable></td>
             </tr>
             </tbody>
         </table>
         <div class="pagination">
-            Displaying {{page + 1}} to {{page + 20}} of {{tickets.length}}
-            <a ng-click="page = page - 20" class="f-l pagination-button">Back</a>
-            <a ng-click="page = page + 20" class="f-r pagination-button">Next</a>
+            Displaying {{page + 1}} to
+            {{Math.min(page + 20, tickets.length)}}
+            of {{tickets.length}}
+            <a ng-click="page = page - 20" class="f-l pagination-button"
+               ng-class="{'disabled': page == 0}">Back</a>
+            <a ng-click="page = page + 20" class="f-r pagination-button"
+               ng-class="{'disabled': page + 20 > tickets.length}">Next</a>
         </div>
     </div>
 </div>

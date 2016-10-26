@@ -54,6 +54,7 @@ body {
   text-align: left;
   padding: 5px 9px;
   max-width: 400px;
+  line-height: 24px;
 }
 
 .tickets-table {
@@ -68,9 +69,47 @@ body {
   font-weight: bold;
   padding: 10px 20px;
 }
+.pagination-button.disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.4;
+}
 .tickets-table tr:nth-child(even) {
   background-color: #eeeeee;
 }
 .pagination {
   text-align: center;
+}
+.edit-icon {
+  display: none;
+}
+.editable-value:hover .edit-icon {
+  display: block;
+}
+.icon-span {
+  float: right;
+  width:24px;
+  height:24px;
+  cursor: pointer;
+}
+.edit-icon {
+  background: url("/assets/edit.png") no-repeat;
+}
+.cancel-icon {
+  background: url("/assets/cancel.png") no-repeat;
+}
+.save-icon {
+  background: url("/assets/save.png") no-repeat;
+}
+.tickets-table editable {
+  display: block;
+  width: 180px;
+}
+.tickets-table editable input {
+  width: 118px;
+}
+a.like-link {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
 }

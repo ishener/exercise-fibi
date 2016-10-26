@@ -9,25 +9,22 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', function($scope, TicketsService) {
+.controller('View1Ctrl', function($scope, $location, TicketsService) {
   $scope.tickets = null;
   $scope.page = 0;
   $scope.reverse = true;
+  $scope.Math = window.Math;
 
   TicketsService.getTickets().then(function (tickets) {
-    for (var i = 0; i < tickets.length; i++) {
-      var ticket = tickets[i];
-      for (var j = 0; j < ticket.participateList.length; j++) {
-        var participant = ticket.participateList[j];
-        var participantDisplay = participant.participateDisplayName + " - " + participant.onlineState;
-        if (participant.participateState == 'OWNER') {
-          ticket.owner = participantDisplay;
-        } else {
-          ticket.participant = participantDisplay;
-        }
-      }
-    }
     $scope.tickets = tickets;
   });
+
+  $scope.updateTicket = function (ticket) {
+    TicketsService.saveTicket(ticket);
+  };
+
+  $scope.gotoTicket = function (ticketId) {
+    $location.path('ticket/' + ticketId);
+  };
 
 });
